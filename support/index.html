@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Dropcare</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1A6EFF;
+      --navy: #0B1F45;
+      --teal: #00C2A3;
+      --light: #F4F8FF;
+      --muted: #6B7A99;
+      --border: #DDE5F4;
+      --white: #ffffff;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white); color: var(--navy); line-height: 1.7;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-size: 20px; font-weight: 700; color: var(--blue); text-decoration: none; }
+    .nav-back { font-size: 14px; color: var(--muted); text-decoration: none; }
+    .nav-back:hover { color: var(--navy); }
+
+    .page-header {
+      background: var(--light); border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+    }
+    .page-header .container { max-width: 760px; margin: 0 auto; }
+    .page-header .eyebrow {
+      font-size: 12px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--blue); margin-bottom: 10px;
+    }
+    .page-header h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.8px; }
+    .page-header p { font-size: 17px; color: var(--muted); margin-top: 10px; max-width: 520px; }
+
+    .content { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* CONTACT CARDS */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-bottom: 56px;
+    }
+    .contact-card {
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 24px; text-align: center;
+    }
+    .contact-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .contact-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .contact-card p { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    .contact-card a {
+      display: inline-block; padding: 9px 20px;
+      background: var(--blue); color: white;
+      border-radius: 8px; font-size: 14px; font-weight: 600;
+      text-decoration: none;
+    }
+    .contact-card a:hover { opacity: 0.85; }
+
+    /* FAQ */
+    h2 { font-size: 22px; font-weight: 800; color: var(--navy); margin: 0 0 20px; letter-spacing: -0.5px; }
+    .section-divider { margin: 56px 0 28px; border-top: 1px solid var(--border); padding-top: 40px; }
+
+    .faq { display: flex; flex-direction: column; gap: 4px; }
+    details {
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    details + details { margin-top: 6px; }
+    summary {
+      padding: 18px 20px;
+      font-size: 15px; font-weight: 600; color: var(--navy);
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 20px; color: var(--blue); font-weight: 400; }
+    details[open] summary::after { content: "−"; }
+    details[open] { background: var(--light); }
+    .faq-body { padding: 0 20px 18px; font-size: 15px; color: #3A4A6B; line-height: 1.7; }
+    .faq-body p { margin-bottom: 10px; }
+    .faq-body p:last-child { margin-bottom: 0; }
+    .faq-body ul { padding-left: 18px; }
+    .faq-body li { margin-bottom: 6px; }
+
+    /* GETTING STARTED */
+    .steps { display: flex; flex-direction: column; gap: 16px; }
+    .step-row { display: flex; gap: 16px; align-items: flex-start; }
+    .step-num {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--blue); color: white;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800;
+    }
+    .step-text h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .step-text p { font-size: 14px; color: var(--muted); }
+
+    .callout {
+      background: #FFF8E1; border-left: 4px solid #FFB300;
+      padding: 14px 18px; border-radius: 4px; margin-top: 24px;
+    }
+    .callout p { font-size: 14px; color: #5D4037; margin: 0; }
+
+    footer {
+      background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 32px 24px; text-align: center;
+    }
+    footer a { color: rgba(255,255,255,0.5); font-size: 14px; text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: white; }
+    footer p { color: rgba(255,255,255,0.4); font-size: 13px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">Dropcare</a>
+    <a class="nav-back" href="/">← Back to home</a>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <div class="eyebrow">Support</div>
+      <h1>How can we help?</h1>
+      <p>Get help with the Dropcare app or Admin Panel. For questions about your drop schedule or medications, always contact your clinic directly.</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- CONTACT -->
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="icon">📞</div>
+        <h3>Phone support</h3>
+        <p>Reach us directly during business hours.</p>
+        <a href="tel:+37069243619">+370 692 43 619</a>
+      </div>
+      <div class="contact-card">
+        <div class="icon">🏥</div>
+        <h3>Drop schedule questions?</h3>
+        <p>Questions about your medications or schedule?</p>
+        <a href="#clinic-questions" style="background: #00C2A3;">Contact your clinic</a>
+      </div>
+    </div>
+
+    <!-- GETTING STARTED -->
+    <h2>Getting started with the app</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>Download the Dropcare app</h3>
+          <p>Available on the App Store (iPhone) and Google Play (Android).</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>Enter your activation code</h3>
+          <p>Your clinic sends you a unique code via email or SMS. Enter this code when you first open the app.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h3>Allow notifications</h3>
+          <p>Dropcare uses full phone alarms for your drop reminders. When prompted, allow notifications so your alarms work properly.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <h3>Follow your schedule</h3>
+          <p>Your clinic's treatment plan loads automatically. You'll get an alarm at every dose time — tap to log it as done.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Medical reminder:</strong> Dropcare is a reminder tool, not a medical device. Always follow your clinic's instructions. If you have concerns about your medication or recovery, contact your clinic directly.</p>
+    </div>
+
+    <!-- FAQ: PATIENTS -->
+    <div class="section-divider">
+      <h2>Frequently asked questions — Patients</h2>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>I haven't received my activation code. What should I do?</summary>
+        <div class="faq-body">
+          <p>Your activation code is sent by your clinic via email and/or SMS after your surgery. Check your spam/junk folder if you haven't seen it in your inbox.</p>
+          <p>If you still can't find it, contact your clinic and ask them to resend the code — they can do this directly from the Dropcare Admin Panel.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My activation code isn't working. What's wrong?</summary>
+        <div class="faq-body">
+          <p>Double-check you're entering the code exactly as received (it's case-sensitive). Make sure there are no extra spaces.</p>
+          <p>If it still doesn't work, contact your clinic — they may need to issue a new code.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My alarms aren't going off. How do I fix this?</summary>
+        <div class="faq-body">
+          <p>Dropcare sends full phone alarms, not silent notifications. If your alarms aren't firing, check:</p>
+          <ul>
+            <li>Notifications are enabled for Dropcare in your phone's Settings</li>
+            <li>Your phone is not on Do Not Disturb or Silent mode, or Dropcare is set as a Critical Alert exception</li>
+            <li>Your phone has sufficient battery and is connected to the internet</li>
+            <li>The app has not been force-closed or restricted from running in the background</li>
+          </ul>
+          <p>If alarms still don't work after checking the above, call us at <a href="tel:+37069243619">+370 692 43 619</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I accidentally missed marking a dose. Can I fix it?</summary>
+        <div class="faq-body">
+          <p>Dose logs are time-stamped records — you cannot backdate a log. If you missed a dose or forgot to log one, contact your clinic. They can see your progress record and advise you on next steps.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>My schedule looks wrong. Who should I contact?</summary>
+        <div class="faq-body">
+          <p>Your drop schedule is created and managed entirely by your clinic. Dropcare displays exactly what your clinic has configured. If something looks incorrect — wrong drops, wrong times, wrong duration — contact your clinic directly.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I contact my clinic through the app?</summary>
+        <div class="faq-body">
+          <p>Go to the <strong>Information</strong> tab in the app. You'll find your clinic's phone number, email address, opening hours, and a FAQ section. You can also submit a question directly from this screen — your clinic will see it in their dashboard and respond.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Who has access to my personal information?</summary>
+        <div class="faq-body">
+          <p>Your data is controlled by your clinic, not by Dropcare. Your clinic's admin-level staff can see your name, contact details, surgery information, and dose compliance logs. Dropcare stores this data as a technical service provider on behalf of your clinic and does not use it for any independent purpose.</p>
+          <p>For full details, see our <a href="/privacy">Privacy Policy</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>I want to delete my data. What do I do?</summary>
+        <div class="faq-body">
+          <p>Contact your clinic directly and request deletion of your patient record. Your clinic is the data controller and can permanently delete your record from the Dropcare platform. Deletion is irreversible.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- FAQ: CLINICS -->
+    <div class="section-divider">
+      <h2>Frequently asked questions — Clinics</h2>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>How do I add a new patient?</summary>
+        <div class="faq-body">
+          <p>Go to <strong>All Patients</strong> in the Admin Panel and click <strong>Add Patient</strong>. Enter the patient's name, email, phone number, surgery type, and surgery date. Once saved, an activation code is automatically generated. You can send this to the patient immediately via email and/or SMS, or save it to send later.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can I update a patient's treatment plan mid-recovery?</summary>
+        <div class="faq-body">
+          <p>Yes. Open the patient's detail view, go to the <strong>Treatment Plan</strong> tab, and assign a new plan or edit the current one. Changes take effect immediately and the patient's app updates on next sync. You are responsible for the clinical appropriateness of any change before saving.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>How do I see which patients are at risk of missing doses?</summary>
+        <div class="faq-body">
+          <p>The Admin Panel <strong>Dashboard</strong> surfaces patients who have missed multiple doses under the "Need Attention" section. You can click through to view their full progress and resend their activation code if needed.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What happens to patient data if we cancel our subscription?</summary>
+        <div class="faq-body">
+          <p>Patient data is retained for 30 days after account termination, during which time you can export records. After 30 days, all patient data is permanently deleted. We recommend exporting all necessary records before terminating your account.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>We want to get Dropcare for our clinic. How do we get started?</summary>
+        <div class="faq-body">
+          <p>Call us at <a href="tel:+37069243619">+370 692 43 619</a> and we'll walk you through the setup and commercial terms.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- CLINIC NOTE -->
+    <div id="clinic-questions" style="margin-top: 56px; padding: 28px; background: #F4F8FF; border: 1px solid #DDE5F4; border-radius: 16px;">
+      <h3 style="font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px;">Questions about your drop schedule or medication?</h3>
+      <p style="font-size: 15px; color: #3A4A6B; margin: 0;">These are set by your clinic, not by Dropcare. Please contact your clinic directly — their phone number, email, and opening hours are shown in the <strong>Information</strong> tab of your Dropcare app.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+    </div>
+    <p>© 2025 Dropcare. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

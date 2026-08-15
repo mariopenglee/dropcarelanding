@@ -1,0 +1,9 @@
+node_modules
+dist
+.vercel
+.DS_Store
+
+# Figma export — 80 MB, kept out of git history
+*.site
+
+tsconfig.tsbuildinfo

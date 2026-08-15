@@ -1,0 +1,500 @@
+/**
+ * Styling for the static content pages (/privacy, /terms, /support).
+ *
+ * These pages are plain HTML served straight from public/ -- they don't go
+ * through the React bundle, so the font and the tokens are redeclared here.
+ * The values match src/index.css so the pages read as one site.
+ */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+}
+
+:root {
+  --ink: #000000;
+  --ink-mid: #6f6f6f;
+  --ink-soft: #929292;
+
+  --line: #e9e9e9;
+
+  --blue: #0068d3;
+  --blue-pale: #d3f2ff;
+  --blue-tint: #f6fcff;
+  --green: #0db06b;
+
+  --sky-top: #dff3fc;
+  --sky-mid: #cff4fe;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #fff;
+  color: var(--ink-mid);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -------------------------------------------------------------- nav ---- */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88px;
+  padding: 0 40px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-logo::before {
+  content: '';
+  width: 27px;
+  height: 30px;
+  background: url('/drop.png') center / contain no-repeat;
+}
+
+.nav-back {
+  font-size: 15px;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-back:hover {
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------- page header ---- */
+
+.page-header {
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 40%, #fff 100%);
+  padding: 72px 40px 64px;
+}
+
+.page-header .container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-size: 12px;
+  color: var(--blue);
+  margin-bottom: 18px;
+}
+
+.page-header h1 {
+  font-size: clamp(40px, 2.21vw + 31.7px, 60px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+
+.page-header h1 + p,
+.page-header .meta {
+  font-size: 15px;
+  color: var(--ink-mid);
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------- content ---- */
+
+.content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 72px 40px 110px;
+}
+
+h2 {
+  font-size: clamp(28px, 1.33vw + 23px, 40px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin: 64px 0 20px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line);
+}
+
+h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 32px 0 8px;
+}
+
+p {
+  margin-bottom: 14px;
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 14px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+a {
+  color: var(--blue);
+}
+
+/* Highlighted "core principle" panel. */
+.notice {
+  background: var(--blue-tint);
+  border: 1px solid rgba(0, 104, 211, 0.14);
+  border-radius: 16px;
+  padding: 24px 26px;
+  margin-bottom: 48px;
+}
+
+.notice strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.038em;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.notice p {
+  font-size: 15px;
+  color: var(--blue);
+  margin: 0;
+}
+
+.callout {
+  background: #fff8e6;
+  border-left: 3px solid #f59e0b;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 14px;
+  color: #7a5b16;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+th {
+  background: var(--blue-tint);
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+td {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  color: var(--ink-mid);
+  vertical-align: top;
+}
+
+.contact-box {
+  background: var(--blue-tint);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px;
+  margin-top: 18px;
+}
+
+.contact-box p {
+  margin: 0 0 6px;
+}
+
+/* ------------------------------------------------- support specifics ---- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.contact-card {
+  background: var(--blue-tint);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 24px;
+  text-align: center;
+}
+
+.contact-card .icon {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.contact-card h3 {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.038em;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.contact-card p {
+  font-size: 14px;
+  color: var(--ink-mid);
+  margin-bottom: 18px;
+}
+
+.contact-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding-inline: 24px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.contact-card a:hover {
+  opacity: 0.88;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.step-text h3 {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.step-text p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.section-divider {
+  margin: 64px 0 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 48px;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+details {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+details[open] {
+  background: var(--blue-tint);
+}
+
+summary {
+  padding: 18px 22px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: '+';
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--blue);
+}
+
+details[open] summary::after {
+  content: '−';
+}
+
+.faq-body {
+  padding: 0 22px 20px;
+  color: var(--ink-mid);
+}
+
+.faq-body p {
+  margin-bottom: 10px;
+}
+
+.faq-body p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-body ul {
+  padding-left: 18px;
+}
+
+.faq-body li {
+  margin-bottom: 6px;
+}
+
+/* ------------------------------------------------------------ footer ---- */
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  text-decoration: none;
+}
+
+.footer-logo::before {
+  content: '';
+  width: 27px;
+  height: 30px;
+  background: url('/drop.png') center / contain no-repeat;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+footer a:not(.footer-logo) {
+  font-size: 12px;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:not(.footer-logo):hover {
+  color: var(--ink);
+}
+
+footer p {
+  font-size: 12px;
+  color: var(--ink-mid);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------ mobile ---- */
+
+@media (max-width: 767px) {
+  nav {
+    height: 72px;
+    padding: 0 16px;
+  }
+
+  .page-header {
+    padding: 48px 16px 44px;
+  }
+
+  .content {
+    padding: 48px 16px 80px;
+  }
+
+  footer {
+    padding: 32px 16px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}

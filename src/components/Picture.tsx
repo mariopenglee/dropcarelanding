@@ -38,7 +38,9 @@ export function Picture({
         className={className}
         style={style}
         loading={loading}
-        fetchPriority={fetchPriority}
+        // React 18 doesn't know the camelCase spelling and drops the attribute
+        // with a console warning; the lowercase one passes straight through.
+        {...{ fetchpriority: fetchPriority }}
         decoding="async"
       />
     </picture>

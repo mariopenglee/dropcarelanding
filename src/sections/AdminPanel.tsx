@@ -27,11 +27,14 @@ const ROWS = [
 
 export function AdminPanel() {
   return (
-    <section id="admin" className="shell mt-[139px]">
-      <hr className="rule" />
-      <p className="t-micro mt-[80px]">Admin panel</p>
-      <h2 className="t-display mt-[38px]">Easy management</h2>
-      <p className="t-body mt-[62px] max-w-[790px]">
+    <section id="admin" className="shell mt-[77.9px] md:mt-[139px]">
+      {/* The artboard runs these rules edge to edge on mobile. */}
+      <hr className="rule mx-[calc(var(--gutter)*-1)] md:mx-0" />
+      <p className="t-micro mt-[79px] md:mt-[80px]">Admin panel</p>
+      <h2 className="t-display mt-[31.2px] max-w-[89%] md:mt-[38px] md:max-w-none">
+        Easy management
+      </h2>
+      <p className="t-body mt-[29.35px] max-w-[790px] md:mt-[62px]">
         Set up your plans and medications. Get notified when patients are not taking their
         drops. Share post-surgery guide and FAQ with your patients. They can also ask a
         question straight through the app.
@@ -40,20 +43,27 @@ export function AdminPanel() {
       {ROWS.map(({ Icon, title, body, poster, video, alt, offset }, i) => (
         <div
           key={title}
-          className={`mt-[86px] gap-14 lg:grid lg:grid-cols-[464px_minmax(0,1fr)] lg:gap-[54px] ${
+          className={`mt-[89.25px] gap-14 md:mt-[86px] lg:grid lg:grid-cols-[464px_minmax(0,1fr)] lg:gap-[54px] ${
             i === 0 ? 'lg:mt-[85px]' : ''
           }`}
         >
           <div className={offset}>
-            <hr className="rule" />
-            <div className="mt-[37px] flex items-center gap-4">
+            <hr className="rule mx-[calc(var(--gutter)*-1)] md:mx-0" />
+            {/* The artboard sets these two rows slightly differently (44.1 and
+                39.7 above the title, 27.65 and 24.05 above the copy); one value
+                splits the difference and lands every anchor within ~4px. The
+                title column is capped so "Add new patient in 30s" breaks over
+                two lines the way the artboard shows. */}
+            <div className="mt-[42px] flex items-center gap-4 md:mt-[37px]">
               <Icon size={32} className="shrink-0 text-[var(--blue)]" />
-              <h3 className="t-heading text-[var(--ink-mid)]">{title}</h3>
+              <h3 className="t-heading max-w-[250px] text-[var(--ink-mid)] md:max-w-none">
+                {title}
+              </h3>
             </div>
-            <p className="t-body mt-[29px] whitespace-pre-line">{body}</p>
+            <p className="t-body mt-[26px] whitespace-pre-line md:mt-[29px]">{body}</p>
           </div>
 
-          <Device poster={poster} video={video} alt={alt} className="max-lg:mt-14" />
+          <Device poster={poster} video={video} alt={alt} className="mt-[90.75px] md:mt-14 lg:mt-0" />
         </div>
       ))}
     </section>

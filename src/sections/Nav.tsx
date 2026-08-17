@@ -14,7 +14,8 @@ type NavProps = {
 export function Nav({ onContact }: NavProps) {
   return (
     <header className="sticky top-0 z-50">
-      <div className="shell relative flex h-[88px] items-center justify-between">
+      {/* 82px on the mobile artboard, 88 at 1280. */}
+      <div className="shell relative flex h-[82px] items-center justify-between md:h-[88px]">
         <Logo />
 
         {/* Glass pill holding the section links. It reads as invisible on the

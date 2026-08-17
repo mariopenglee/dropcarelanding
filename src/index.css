@@ -75,15 +75,31 @@
   --content: 1200px;
 
   /* The type ramp is anchored to the 1280px desktop artboard and interpolates
-   * down to the 375px mobile artboard, where the display size measures 40px. */
+   * down to the 375px mobile artboard, where the display size measures 40px.
+   * Every clamp hits the mobile value at 375 and the desktop value at 1280. */
   --fs-display: clamp(40px, 2.21vw + 31.7px, 60px);
   --fs-heading: clamp(28px, 1.33vw + 23px, 40px);
-  --fs-logo: clamp(21px, 0.99vw + 17.3px, 30px);
-  --fs-lead: 18px;
-  --fs-label: 16.25px;
+  --fs-logo: clamp(21.83px, 0.903vw + 18.445px, 30px);
+  --fs-lead: clamp(16px, 0.221vw + 15.171px, 18px);
+  --fs-label: clamp(15px, 0.138vw + 14.482px, 16.25px);
   --fs-body: 15px;
   --fs-small: 14px;
-  --fs-micro: 12px;
+  --fs-micro: clamp(10.5px, 0.166vw + 9.878px, 12px);
+  --fs-plan-title: clamp(22px, 0.221vw + 21.171px, 24px);
+  --fs-tier-num: clamp(18px, 2.43vw + 8.9px, 40px);
+  --fs-tier-label: clamp(10.5px, 0.829vw + 7.39px, 18px);
+
+  /* Leading is not a fixed ratio: the artboards set 38px on 40px display type
+   * and 54px on 60px, 31px on 28px headings and 42px on 40px. Both are linear
+   * in the font size, so the em + px form lands on each artboard exactly and
+   * interpolates between them the same way the clamps above do. */
+  --lh-display: calc(0.8em + 6px);
+  --lh-heading: calc(0.9167em + 5.333px);
+
+  /* The logo mark and the gap to the wordmark shrink on the mobile artboard
+   * (18x20.5 and 12.6 there, 26.6x30 and 20 at 1280). */
+  --logo-mark: clamp(20.5px, 1.05vw + 16.564px, 30px);
+  --logo-gap: clamp(12.6px, 0.818vw + 9.53px, 20px);
 }
 
 @media (max-width: 767px) {
@@ -111,8 +127,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  color: inherit;
+/* In the `base` layer, not unlayered: an unlayered rule outranks every layer,
+   so this would beat `text-white` and the `.btn`/`.t-*` presets on any <a>. */
+@layer base {
+  a {
+    color: inherit;
+  }
+
+  /* <picture> carries `display: contents` so the <img> lays out as if the
+     wrapper weren't there -- but that also lifts the <source> into the parent,
+     where a flex or grid container counts it as a real item and opens an extra
+     gap before the image. It draws nothing, so take it out of the box tree. */
+  picture > source {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------- type presets ---
@@ -126,7 +154,7 @@ a {
 @layer components {
   .t-display {
     font-size: var(--fs-display);
-    line-height: 0.9;
+    line-height: var(--lh-display);
     letter-spacing: -0.028em;
     font-weight: 400;
     color: var(--ink);
@@ -135,7 +163,7 @@ a {
 
   .t-heading {
     font-size: var(--fs-heading);
-    line-height: 1.05;
+    line-height: var(--lh-heading);
     letter-spacing: -0.04em;
     font-weight: 400;
     margin: 0;

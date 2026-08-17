@@ -48,16 +48,16 @@ type PlansProps = {
 
 export function Plans({ onContact }: PlansProps) {
   return (
-    <section className="shell mt-[178px]">
-      <hr className="rule border-[var(--line-strong)]" />
+    <section className="shell mt-[157.8px] md:mt-[178px]">
+      <hr className="rule border-[var(--line-strong)] mx-[calc(var(--gutter)*-1)] md:mx-0" />
 
-      <h2 className="t-display mt-[69px] text-center">Plans</h2>
-      <p className="t-body mx-auto mt-[52px] max-w-[700px] text-center">
+      <h2 className="t-display mt-[80.4px] text-center md:mt-[69px]">Plans</h2>
+      <p className="t-body mx-auto mt-[39.25px] max-w-[700px] text-center md:mt-[52px]">
         Depending on your clinic's size, we suggest to either include it in the price, or
         offer as an additional paid feature.
       </p>
 
-      <div className="mt-[39px] flex flex-col items-stretch justify-center gap-[38px] md:flex-row">
+      <div className="mt-[60.35px] flex flex-col items-center justify-center gap-[15.5px] md:mt-[39px] md:flex-row md:items-stretch md:gap-[38px]">
         {POSITIONING.map(({ Icon, title, body }, i) => (
           <div key={title} className="contents">
             {i === 1 && (
@@ -65,10 +65,12 @@ export function Plans({ onContact }: PlansProps) {
                 /
               </span>
             )}
-            <div className="flex max-w-[460px] flex-1 items-start gap-[22px] rounded-2xl bg-[var(--blue-tint)] px-6 py-5 text-[var(--blue)] max-md:flex-col">
-              <Icon size={38} className="shrink-0" strokeWidth={1.8} />
+            <div className="flex w-[307px] max-w-[460px] flex-1 items-start gap-[22px] rounded-2xl bg-[var(--blue-tint)] px-6 py-5 text-[var(--blue)] max-md:flex-col md:w-auto">
+              <Icon size={38} className="h-7 w-7 shrink-0 md:h-[38px] md:w-[38px]" strokeWidth={1.8} />
               <div>
-                <h3 className="text-[24px] leading-[1.15] tracking-[-0.038em]">{title}</h3>
+                <h3 className="text-[length:var(--fs-plan-title)] leading-[1.15] tracking-[-0.038em]">
+                  {title}
+                </h3>
                 <p className="mt-[10px] text-[length:var(--fs-body)] leading-[1.4]">{body}</p>
               </div>
             </div>
@@ -77,8 +79,10 @@ export function Plans({ onContact }: PlansProps) {
       </div>
 
       {/* Tier comparison. The first column is a raised card; the other two sit
-          flat on the page. Below the md breakpoint the table scrolls sideways. */}
-      <div className="scroller mt-[100px]">
+          flat on the page. Below the md breakpoint the table scrolls sideways,
+          starting 5px from the viewport edge rather than at the gutter, so it
+          breaks out of the shell and sets its own inset. */}
+      <div className="scroller mx-[calc(var(--gutter)*-1)] mt-[119px] px-[5px] md:mx-0 md:mt-[100px] md:px-0">
         <div className="grid w-max grid-cols-3 md:w-full">
           {TIERS.map((tier) => (
             <div
@@ -99,8 +103,10 @@ export function Plans({ onContact }: PlansProps) {
 
               <div className="border-t border-[var(--line-strong)]">
                 <Row featured={tier.featured} tall>
-                  <span className="t-heading">{tier.codes}</span>
-                  <span className="ml-2 text-[length:var(--fs-lead)] tracking-[-0.03em]">
+                  {/* The tier figures shrink hard on the mobile artboard --
+                      18px against 40, and a 10.5px label against 18. */}
+                  <span className="t-heading text-[length:var(--fs-tier-num)]">{tier.codes}</span>
+                  <span className="text-[length:var(--fs-tier-label)] tracking-[-0.03em] md:ml-2">
                     {tier.codesLabel}
                   </span>
                 </Row>
@@ -146,14 +152,20 @@ function Row({
 }) {
   return (
     <div
-      className={`flex items-center gap-[10px] px-[32px] ${tall ? 'h-[106px]' : 'h-[81px] border-t border-[var(--line)]'}`}
+      /* Mobile rows are padded rather than fixed-height: at 200px wide the last
+         label wraps to two lines and the artboard grows that row to match. */
+      className={`flex items-center gap-[10px] px-[32px] ${
+        tall ? 'py-[35.5px] md:h-[106px] md:py-0' : 'border-t border-[var(--line)] py-[32px] md:h-[81px] md:py-0'
+      }`}
     >
       <CheckIcon
         size={13}
         strokeWidth={2.2}
         className={`shrink-0 ${featured ? 'text-[var(--ink)]' : 'text-[var(--ink-soft)]'}`}
       />
-      <span className="flex items-baseline">{children}</span>
+      {/* The figure and its label stack on the mobile artboard and sit on one
+          baseline from md up. */}
+      <span className="flex flex-col md:flex-row md:items-baseline">{children}</span>
     </div>
   )
 }

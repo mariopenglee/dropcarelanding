@@ -64,7 +64,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           rel="noopener noreferrer"
           className="mt-7 flex items-center gap-4 rounded-2xl bg-[var(--linkedin)] p-4 text-white transition-opacity hover:opacity-90"
         >
-          <LinkedInIcon size={26} />
+          <LinkedInIcon size={22} />
           <span className="text-[length:var(--fs-body)] font-medium">Connect on LinkedIn</span>
         </a>
 

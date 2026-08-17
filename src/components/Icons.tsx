@@ -141,18 +141,24 @@ export function ArrowUpRightIcon(p: IconProps) {
   )
 }
 
+/**
+ * The official LinkedIn "in" mark. The viewBox is the path's own bounding box
+ * rather than the usual 0 0 24 24, so `size` is the width of the glyph itself
+ * and it centres on its ink -- the artwork sits left of centre in a 24-wide
+ * box, which would push it off-centre inside the blue tile.
+ */
 export function LinkedInIcon({ size = 24, className }: IconProps) {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 24 24"
+      viewBox="3.274 3.305 17.174 17.147"
       fill="currentColor"
       className={className}
       aria-hidden="true"
       focusable="false"
     >
-      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2.9 21h4.16V9.5H2.9V21ZM9.5 9.5h3.99v1.57h.06c.56-1.02 1.92-2.1 3.95-2.1 4.22 0 5 2.66 5 6.12V21h-4.16v-5.1c0-1.22-.02-2.78-1.75-2.78-1.76 0-2.03 1.32-2.03 2.69V21H9.5V9.5Z" />
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
     </svg>
   )
 }

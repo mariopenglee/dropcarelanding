@@ -5,7 +5,8 @@ import { Picture } from '../components/Picture'
 export function Footer() {
   return (
     <footer className="mt-[119px] border-t border-[var(--line)]">
-      <div className="shell flex flex-wrap items-center justify-between gap-x-8 gap-y-5 py-[40px]">
+      {/* Centred and stacked on the mobile artboard, spread apart from md. */}
+      <div className="shell flex flex-wrap items-center justify-center gap-x-8 gap-y-5 pt-[45.3px] pb-[26px] md:justify-between md:py-[40px]">
         <div className="flex items-center gap-4">
           <Picture source={images.logoDrop} alt="" className="h-[30px] w-auto" />
           <span className="t-micro">© DropCare.</span>
